@@ -340,7 +340,10 @@ const Designation = () => {
               />
             </div>
           </div>
-          <button type="submit" style={{ fontSize: "14px", backgroundColor: "#7e22ce" }} className="text-white mt-3 px-3 py-2 rounded">Add Designation</button>
+          <div className='grid grid-cols-1'>
+            <button type="submit" style={{ fontSize: "14px", backgroundColor: "#7e22ce" }} className="text-white mt-3 px-3 py-2 rounded col-3 ms-auto">Add Designation</button>
+          </div>
+          {/* <button type="submit" style={{ fontSize: "14px", backgroundColor: "#7e22ce" }} className="text-white mt-3 px-3 py-2 rounded col-4 ms-auto">Add Designation</button> */}
         </form>
       </div>
 
