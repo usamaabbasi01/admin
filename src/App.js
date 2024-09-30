@@ -5,6 +5,8 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Record from './pages/Record';
 import Employee from './pages/Employee';
+import EmployeeDetails from './pages/EmployeeDetails';
+import AddEmployee from './pages/AddNewEmployee';
 import Team from './pages/Team';
 import Designation from './pages/Designation';
 import Stations from './pages/Stations';
@@ -30,6 +32,9 @@ function App() {
           <Route path="/designation" element={user ? <Designation /> : <Navigate to="/" />} />
           <Route path="/stations" element={user ? <Stations /> : <Navigate to="/" />} />
           <Route path="/settings" element={user ? <Settings /> : <Navigate to="/" />} />
+
+          <Route path="/employee/details" element={<EmployeeDetails />} />
+          <Route path="/employee/add" element={<AddEmployee />} />
         </Routes>
       </div>
     </div>

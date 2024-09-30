@@ -48,7 +48,7 @@ const Team = () => {
   };
 
   return (
-    <div style={{ marginLeft: "250px" }}>
+    <div style={{ marginLeft: "260px" }}>
       <h1 className="text-2xl font-bold mb-4">Teams</h1>
       <div className='p-3 rounded bg-gray-50'>
         <form onSubmit={handleSubmit} className="mb-4 space-y-2" style={{ fontSize: '12px' }}>

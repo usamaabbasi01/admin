@@ -47,7 +47,7 @@ const Stations = () => {
   };
 
   return (
-    <div style={{marginLeft: "250px"}}>
+    <div style={{marginLeft: "260px"}}>
       <h1 className="text-2xl font-bold mb-4">Stations</h1>
       <div className='p-3 rounded bg-gray-100 mb-4'>
         <form onSubmit={handleSubmit} className="flex space-x-2" style={{ fontSize: '14px' }}>
