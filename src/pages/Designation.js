@@ -181,7 +181,7 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { collection, getDocs, addDoc, setDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, addDoc, setDoc, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase-config';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
@@ -197,15 +197,34 @@ const Designation = () => {
   });
 
   // Fetch designations from Firestore
+  // const fetchDesignations = async () => {
+  //   const designationCollection = collection(db, 'designation');
+  //   const designationSnapshot = await getDocs(designationCollection);
+  //   const designationList = designationSnapshot.docs.map(doc => ({
+  //     id: doc.id,
+  //     ...doc.data(),
+  //   }));
+  //   setDesignations(designationList);
+  // };
+
+
+
+
   const fetchDesignations = async () => {
-    const designationCollection = collection(db, 'designation');
-    const designationSnapshot = await getDocs(designationCollection);
-    const designationList = designationSnapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-    setDesignations(designationList);
+    const hierarchyDoc = await getDoc(doc(db, 'pchierarchy', 'hierarchy'));
+    if (hierarchyDoc.exists()) {
+      const hierarchyData = hierarchyDoc.data().hierarchy;
+      // Convert the map to an array, keeping the order
+      const designationList = Object.keys(hierarchyData).map(key => ({
+        id: key,
+        ...hierarchyData[key]
+      }));
+      setDesignations(designationList);
+    }
   };
+
+
+
 
   useEffect(() => {
     fetchDesignations();
