@@ -89,3 +89,56 @@ const EditEmployeeModal = ({ employee, closeModal, fetchEmployees }) => {
 };
 
 export default EditEmployeeModal;
+
+
+
+// // EditEmployeeModal.js
+// import React, { useEffect, useState } from 'react';
+// import { doc, updateDoc } from 'firebase/firestore';
+// import { db } from '../firebase-config'; // Ensure you have the correct import for your Firebase configuration
+
+// const EditEmployeeModal = ({ employee, closeModal, fetchEmployees }) => {
+//   const [name, setName] = useState(employee.Name);
+//   const [code, setCode] = useState(employee.Code);
+//   const [team, setTeam] = useState(employee.Team || []);
+//   const [station, setStation] = useState(employee.Station);
+//   const [designation, setDesignation] = useState(employee.Designation);
+
+//   const handleUpdate = async () => {
+//     // Ensure to check if employee ID is valid
+//     const employeeRef = doc(db, 'employees', employee.id); // Use the correct ID from the passed employee prop
+//     await updateDoc(employeeRef, {
+//       Name: name,
+//       Code: code,
+//       Team: team,
+//       Station: station,
+//       Designation: designation,
+//     });
+//     await fetchEmployees(); // Refresh the list after updating
+//     closeModal(); // Close the modal
+//   };
+
+//   return (
+//     <div className="modal">
+//       <h2>Edit Employee</h2>
+//       <input
+//         type="text"
+//         value={name}
+//         onChange={(e) => setName(e.target.value)}
+//         placeholder="Name"
+//       />
+//       <input
+//         type="text"
+//         value={code}
+//         onChange={(e) => setCode(e.target.value)}
+//         placeholder="Code"
+//       />
+//       {/* Add inputs for team, station, and designation */}
+
+//       <button onClick={handleUpdate}>Update</button>
+//       <button onClick={closeModal}>Cancel</button>
+//     </div>
+//   );
+// };
+
+// export default EditEmployeeModal;

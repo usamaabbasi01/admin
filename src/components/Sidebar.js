@@ -121,13 +121,13 @@ function Sidebar() {
         </NavLink>
         
         <NavLink 
-          to="/record"
+          to="/monthly-expense"
           onClick={hideEmployeeLinks}
           style={{textDecoration: "none"}} 
           className={({ isActive }) => `flex items-center p-2 my-2 rounded-lg transition-colors duration-200 
             ${isActive ? 'bg-purple-500 text-white' : 'text-white hover:bg-purple-500 hover:text-white'}`}>
           <FaClipboardList className="mr-3" />
-          Record
+          Expenses
         </NavLink>
         
         {/* Employee link with toggle for sub-links */}

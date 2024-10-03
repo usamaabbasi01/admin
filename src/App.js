@@ -3,7 +3,8 @@ import React from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
-import Record from './pages/Record';
+// import Record from './pages/Record';
+import MonthlyExpensePage from './pages/MonthlyExpensePage';
 import Employee from './pages/Employee';
 import EmployeeDetails from './pages/EmployeeDetails';
 import AddEmployee from './pages/AddNewEmployee';
@@ -26,7 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/" />} />
-          <Route path="/record" element={user ? <Record /> : <Navigate to="/" />} />
+          <Route path="/monthly-expense" element={user ? <MonthlyExpensePage /> : <Navigate to="/" />} />
           <Route path="/employee" element={user ? <Employee /> : <Navigate to="/" />} />
           <Route path="/team" element={user ? <Team /> : <Navigate to="/" />} />
           <Route path="/designation" element={user ? <Designation /> : <Navigate to="/" />} />
