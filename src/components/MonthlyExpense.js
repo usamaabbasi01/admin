@@ -78,7 +78,8 @@ const MonthlyExpense = () => {
         }
 
         // Calculate Big City Allowance only for "Lahore" and "Karachi"
-        const bigCityAllowance = (station === "Lahore" || station === "Karachi") ? businessDays * 100 : 0;
+        let bigCityAllowance = (station === "Lahore" || station === "Karachi") ? businessDays * 100 : 0;
+        bigCityAllowance = Math.min(bigCityAllowance, 2200);
 
         const expenseRow = {
           employeeCode,
