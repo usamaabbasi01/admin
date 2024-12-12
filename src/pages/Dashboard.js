@@ -335,41 +335,62 @@ const Dashboard = () => {
           const dailyExpensesArray = []; // Temporary array to structure daily expenses
 
           if (expensesData) {
-            // Iterate over each date key in the database
             Object.keys(expensesData).forEach((date) => {
-              const dailyForms = expensesData[date]?.submitted_form; // Get submitted forms for this date
+              const dailyForms = expensesData[date]?.submitted_form || {};
               let totalExpenseForTheDay = 0;
-
-              if (dailyForms) {
-                // Iterate over each employee's form for the day
-                Object.keys(dailyForms).forEach((employeeId) => {
-                  const form = dailyForms[employeeId];
-                  totalExpenseForTheDay += form.totalExpense || 0; // Accumulate total expenses for the day
-                });
-              }
-
-              // Add the date and total expense for the day to the array
+        
+              // Iterate through each employee's form
+              Object.keys(dailyForms).forEach((employeeId) => {
+                const form = dailyForms[employeeId];
+                if (form && form.totalExpense) {
+                  totalExpenseForTheDay += form.totalExpense; // Sum up expenses
+                }
+              });
+        
+              // Add the date and total expense for that date
               dailyExpensesArray.push({
-                date, // Keep the raw date string
+                date, // Raw date (you can format it later if needed)
                 totalExpense: totalExpenseForTheDay,
               });
             });
-
-            setDailyExpenses(dailyExpensesArray); // Update state with the structured daily expenses
+        
+            setDailyExpenses(dailyExpensesArray); // Update state correctly
           } else {
-            console.log('No expenses data available'); // Handle the case when no data is found
+            console.log('No expenses data available');
           }
         });
 
         // Fetch pending approvals
         const pendingRef = ref(dbRealtime, 'non_approved'); // Adjust the path as per your structure
         onValue(pendingRef, (snapshot) => {
-          const pendingData = snapshot.val();
+          const pendingData = snapshot.val(); // Fetch data
+        
           if (pendingData) {
-            const totalPending = Object.keys(pendingData).length; // Count total pending forms
+            let totalPending = 0; // Initialize the total pending count
+        
+            // Iterate through each designation (e.g., DSO, FM)
+            Object.keys(pendingData).forEach((designation) => {
+              const designationData = pendingData[designation];
+              
+              // Iterate through each employee in the designation (e.g., K-6538)
+              Object.keys(designationData).forEach((employeeId) => {
+                const employeeData = designationData[employeeId];
+        
+                // If the employee has a 'submitted_form' object, proceed
+                if (employeeData.submitted_form) {
+                  // Count the number of dates (keys) in the 'submitted_form' for this employee
+                  const submittedDatesCount = Object.keys(employeeData.submitted_form).length;
+        
+                  // Add the number of dates for this employee to the total pending count
+                  totalPending += submittedDatesCount;
+                }
+              });
+            });
+        
+            // Update the state with the total count of dates across all employees
             setPendingApprovals(totalPending);
           } else {
-            setPendingApprovals(0); // No pending forms
+            setPendingApprovals(0); // No pending forms available
           }
         });
       } catch (error) {
@@ -442,23 +463,23 @@ const Dashboard = () => {
     <div className="p-4" style={{ marginLeft: '260px' }}>
       {/* Top Section: Key Statistics */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-        <div className="bg-purple-500 text-white p-4 rounded-lg shadow-md">
-          <h3 className="text-xl">Total Employees</h3>
+        <div className="bg-white text-primary p-4 rounded-lg shadow-md">
+          <h3 className="text-sm">Total Employees</h3>
           <p className="text-3xl">{totalEmployees}</p>
         </div>
 
-        <div className="bg-green-500 text-white p-4 rounded-lg shadow-md">
-          <h3 className="text-xl">Total Teams</h3>
+        <div className="bg-white text-success p-4 rounded-lg shadow-md">
+          <h3 className="text-sm">Total Teams</h3>
           <p className="text-3xl">{totalTeams}</p>
         </div>
 
-        <div className="bg-blue-500 text-white p-4 rounded-lg shadow-md">
-          <h3 className="text-xl">Total Designations</h3>
+        <div className="bg-white text-info p-4 rounded-lg shadow-md">
+          <h3 className="text-sm">Total Designations</h3>
           <p className="text-3xl">{totalDesignations}</p>
         </div>
 
-        <div className="bg-red-500 text-white p-4 rounded-lg shadow-md">
-          <h3 className="text-xl">Pending Approvals</h3>
+        <div className="bg-white text-danger p-4 rounded-lg shadow-md">
+          <h3 className="text-sm">Pending Approvals</h3>
           <p className="text-3xl">{pendingApprovals}</p>
         </div>
       </div>
