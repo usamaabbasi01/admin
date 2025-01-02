@@ -209,7 +209,6 @@ const EmployeeDetails = () => {
                 value={formData.code}
                 onChange={(e) => setFormData({ ...formData, code: e.target.value })}
                 className="border p-2 rounded w-full"
-                readOnly
               />
             </div>
             <div className="mb-4 w-50">
