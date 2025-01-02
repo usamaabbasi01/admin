@@ -125,6 +125,7 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase-config';
+import * as XLSX from 'xlsx';
 import CloseAccount from '../components/CloseAccount'; // Import CloseAccount component
 import '../App.css';
 
@@ -193,6 +194,14 @@ const EmployeeDetails = () => {
     employee.Name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     employee.Code.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  // Function to export data to Excel
+  const exportToExcel = () => {
+    const ws = XLSX.utils.json_to_sheet(employees); // Convert employee data to a worksheet
+    const wb = XLSX.utils.book_new(); // Create a new workbook
+    XLSX.utils.book_append_sheet(wb, ws, 'Employees'); // Append the worksheet to the workbook
+    XLSX.writeFile(wb, 'EmployeeDetails.xlsx'); // Download the Excel file
+  };
 
   return (
     <div style={{ marginLeft: "260px" }}>
@@ -267,6 +276,13 @@ const EmployeeDetails = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
         className="border p-2 rounded mt-5 mb-2 w-full"
       />
+
+      <button 
+        onClick={exportToExcel} 
+        className="bg-green-500 text-white p-2 rounded mb-4"
+      >
+        Export to Excel
+      </button>
 
       {/* Employee list */}
       <div className='py-3 bg-white rounded'>
