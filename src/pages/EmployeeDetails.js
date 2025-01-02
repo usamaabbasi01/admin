@@ -215,7 +215,7 @@ const EmployeeDetails = () => {
 
       {/* Editable form at the top */}
 
-        <form onSubmit={handleSubmit} className="bg-gray-100 p-4 rounded mb-4">
+        <form onSubmit={handleSubmit} className="bg-gray-100 p-4 rounded mb-4" style={{fontSize: '12px'}}>
           <div className='d-flex gap-5'>
             <div className="mb-4 w-50">
               <label className="block text-gray-700">Code</label>
@@ -223,7 +223,7 @@ const EmployeeDetails = () => {
                 type="text"
                 value={formData.code}
                 onChange={(e) => setFormData({ ...formData, code: e.target.value })}
-                className="border p-2 rounded w-full"
+                className="border p-1 rounded w-full"
               />
             </div>
             <div className="mb-4 w-50">
@@ -232,7 +232,7 @@ const EmployeeDetails = () => {
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="border p-2 rounded w-full"
+                className="border p-1 rounded w-full"
                 required
               />
             </div>
@@ -244,7 +244,7 @@ const EmployeeDetails = () => {
                 type="text"
                 value={formData.team}
                 onChange={(e) => setFormData({ ...formData, team: e.target.value })}
-                className="border p-2 rounded w-full"
+                className="border p-1 rounded w-full"
                 placeholder="Comma-separated teams"
               />
             </div>
@@ -254,7 +254,7 @@ const EmployeeDetails = () => {
                 type="text"
                 value={formData.station}
                 onChange={(e) => setFormData({ ...formData, station: e.target.value })}
-                className="border p-2 rounded w-full"
+                className="border p-1 rounded w-full"
                 required
               />
             </div>
@@ -264,7 +264,7 @@ const EmployeeDetails = () => {
                 type="text"
                 value={formData.designation}
                 onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
-                className="border p-2 rounded w-full"
+                className="border p-1 rounded w-full"
                 required
               />
             </div>
@@ -280,15 +280,16 @@ const EmployeeDetails = () => {
         placeholder="Search by employee name or code"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="border p-2 rounded mt-5 mb-2 w-full"
+        className="border p-1 rounded mt-3 mb-2 w-full"
+        style={{fontSize: '12px'}}
       />
 
-      <button 
+      {/* <button 
         onClick={exportToExcel} 
         className="bg-green-500 text-white p-2 rounded mb-4"
       >
         Export to Excel
-      </button>
+      </button> */}
 
       {/* Employee list */}
       <div className='py-3 bg-white rounded'>
