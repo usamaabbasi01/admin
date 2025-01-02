@@ -281,7 +281,7 @@ const EmployeeDetails = () => {
         </div>
 
         {filteredEmployees.map(employee => (
-          <div key={employee.id} className='d-flex mb-3 py-2 px-3 bg-gray-100 rounded'>
+          <div key={employee.id} className='d-flex mb-2 py-2 px-3 bg-gray-100 rounded'>
             <div className='col-1'>{employee.Code}</div>
             <div className='col-3'>{employee.Name}</div>
             <div className='col-2'>{employee.Team ? employee.Team.join(', ') : 'No Team Assigned'}</div>
