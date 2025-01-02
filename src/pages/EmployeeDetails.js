@@ -218,28 +218,31 @@ const EmployeeDetails = () => {
         <form onSubmit={handleSubmit} className="bg-gray-100 p-4 rounded mb-4" style={{fontSize: '12px'}}>
           <div className='d-flex gap-5'>
             <div className="mb-4 w-50">
-              <label className="block text-gray-700">Code</label>
+              {/* <label className="block text-gray-700">Code</label> */}
               <input
                 type="text"
                 value={formData.code}
                 onChange={(e) => setFormData({ ...formData, code: e.target.value })}
                 className="border p-2 rounded w-full"
+                placeholder='Code'
+                required
               />
             </div>
             <div className="mb-4 w-50">
-              <label className="block text-gray-700">Name</label>
+              {/* <label className="block text-gray-700">Name</label> */}
               <input
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="border p-2 rounded w-full"
+                placeholder='Name'
                 required
               />
             </div>
           </div>
           <div className='d-flex gap-5 w-100'>
             <div className="mb-4">
-              <label className="block text-gray-700">Team</label>
+              {/* <label className="block text-gray-700">Team</label> */}
               <input
                 type="text"
                 value={formData.team}
@@ -249,22 +252,24 @@ const EmployeeDetails = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700">Station</label>
+              {/* <label className="block text-gray-700">Station</label> */}
               <input
                 type="text"
                 value={formData.station}
                 onChange={(e) => setFormData({ ...formData, station: e.target.value })}
                 className="border p-2 rounded w-full"
+                placeholder='Station'
                 required
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700">Designation</label>
+              {/* <label className="block text-gray-700">Designation</label> */}
               <input
                 type="text"
                 value={formData.designation}
                 onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
                 className="border p-2 rounded w-full"
+                placeholder='Designation'
                 required
               />
             </div>
