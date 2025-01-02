@@ -223,7 +223,7 @@ const EmployeeDetails = () => {
                 type="text"
                 value={formData.code}
                 onChange={(e) => setFormData({ ...formData, code: e.target.value })}
-                className="border p-1 rounded w-full"
+                className="border p-2 rounded w-full"
               />
             </div>
             <div className="mb-4 w-50">
@@ -232,19 +232,19 @@ const EmployeeDetails = () => {
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="border p-1 rounded w-full"
+                className="border p-2 rounded w-full"
                 required
               />
             </div>
           </div>
-          <div className='d-flex gap-5'>
+          <div className='d-flex gap-5 w-100'>
             <div className="mb-4">
               <label className="block text-gray-700">Team</label>
               <input
                 type="text"
                 value={formData.team}
                 onChange={(e) => setFormData({ ...formData, team: e.target.value })}
-                className="border p-1 rounded w-full"
+                className="border p-2 rounded w-full"
                 placeholder="Comma-separated teams"
               />
             </div>
@@ -254,7 +254,7 @@ const EmployeeDetails = () => {
                 type="text"
                 value={formData.station}
                 onChange={(e) => setFormData({ ...formData, station: e.target.value })}
-                className="border p-1 rounded w-full"
+                className="border p-2 rounded w-full"
                 required
               />
             </div>
@@ -264,7 +264,7 @@ const EmployeeDetails = () => {
                 type="text"
                 value={formData.designation}
                 onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
-                className="border p-1 rounded w-full"
+                className="border p-2 rounded w-full"
                 required
               />
             </div>
@@ -280,7 +280,7 @@ const EmployeeDetails = () => {
         placeholder="Search by employee name or code"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="border p-1 rounded mt-3 mb-2 w-full"
+        className="border p-2 rounded mt-3 mb-2 w-full"
         style={{fontSize: '12px'}}
       />
 
