@@ -192,7 +192,7 @@ const EmployeeDetails = () => {
   // Filter employees based on search term
   const filteredEmployees = employees.filter(employee =>
     employee.Name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    employee.Code.toLowerCase().includes(searchTerm.toLowerCase())
+    (typeof employee.Code === 'string' && employee.Code.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
   // Function to export data to Excel
@@ -215,9 +215,9 @@ const EmployeeDetails = () => {
 
       {/* Editable form at the top */}
 
-        <form onSubmit={handleSubmit} className="bg-gray-100 p-4 rounded mb-4" style={{fontSize: '12px'}}>
-          <div className='d-flex gap-5'>
-            <div className="mb-4 w-50">
+        <form onSubmit={handleSubmit} className="bg-gray-50 p-3 rounded mb-4 w-50 h-25 shadow-md" style={{fontSize: '12px'}}>
+          {/* <div className='d-flex gap-5'> */}
+            <div className="mb-4">
               {/* <label className="block text-gray-700">Code</label> */}
               <input
                 type="text"
@@ -228,7 +228,7 @@ const EmployeeDetails = () => {
                 required
               />
             </div>
-            <div className="mb-4 w-50">
+            <div className="mb-4">
               {/* <label className="block text-gray-700">Name</label> */}
               <input
                 type="text"
@@ -239,8 +239,8 @@ const EmployeeDetails = () => {
                 required
               />
             </div>
-          </div>
-          <div className='d-flex gap-5 w-100'>
+          {/* </div> */}
+          {/* <div className='d-flex gap-5 w-100'> */}
             <div className="mb-4">
               {/* <label className="block text-gray-700">Team</label> */}
               <input
@@ -257,7 +257,7 @@ const EmployeeDetails = () => {
                 type="text"
                 value={formData.station}
                 onChange={(e) => setFormData({ ...formData, station: e.target.value })}
-                className="border p-2 rounded w-100"
+                className="border p-2 rounded w-full"
                 placeholder='Station'
                 required
               />
@@ -273,11 +273,14 @@ const EmployeeDetails = () => {
                 required
               />
             </div>
-          </div>
-          <button type="submit" className="bg-blue-500 text-white p-2 rounded col-2">
+          {/* </div> */}
+          <button type="submit" className="bg-blue-500 text-white p-2 rounded col-12">
             Save
           </button>
         </form>
+
+        
+      <div className='w-full'>
 
         {/* Search bar */}
       <input
@@ -285,7 +288,7 @@ const EmployeeDetails = () => {
         placeholder="Search by employee name or code"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="border p-2 rounded mt-3 mb-2 w-full"
+        className="border border-2 p-2 rounded mt-3 mb-2 w-full"
         style={{fontSize: '12px'}}
       />
 
@@ -297,25 +300,25 @@ const EmployeeDetails = () => {
       </button> */}
 
       {/* Employee list */}
-      <div className='py-3 bg-white rounded'>
-        <div className='d-flex mb-3 py-2 px-3 bg-gray-200 rounded'>
+      <div className='py-3 bg-white rounded w-full'>
+        <div className='d-flex mb-3 py-2 px-3 bg-gray-100 rounded' style={{fontSize: '14px'}}>
           <div className='col-1'><strong>Code</strong></div>
           <div className='col-3'><strong>Name</strong></div>
           <div className='col-2'><strong>Team</strong></div>
-          <div className='col-1'></div>
           <div className='col-2'><strong>Station</strong></div>
-          <div className='col-1'><strong>Desig</strong></div>
+          <div className='col-1'><strong>Designation</strong></div>
+          <div className='col-1'></div>
           <div className='col-2'><strong>Action</strong></div>
         </div>
 
         {filteredEmployees.map(employee => (
-          <div key={employee.id} className='d-flex mb-2 py-2 px-3 bg-gray-100 rounded' style={{fontSize: '12px'}}>
+          <div key={employee.id} className='d-flex mb-2 py-2 px-3 bg-gray-50 rounded' style={{fontSize: '12px'}}>
             <div className='col-1'>{employee.Code}</div>
             <div className='col-3'>{employee.Name}</div>
             <div className='col-2'>{employee.Team ? employee.Team.join(', ') : 'No Team Assigned'}</div>
-            <div className='col-1'></div>
             <div className='col-2'>{employee.Station}</div>
             <div className='col-1'>{employee.Designation}</div>
+            <div className='col-1'></div>
             <div className="col-2">
               <button onClick={() => handleEditClick(employee)} className="text-green-600 mr-4">Edit</button>
               <button onClick={() => setSelectedEmployee(employee)} className="text-red-600">Close Account</button>
@@ -323,6 +326,8 @@ const EmployeeDetails = () => {
           </div>
         ))}
       </div>
+
+    </div>
 
       {/* Close Account Component */}
       {selectedEmployee && (
