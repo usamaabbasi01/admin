@@ -24,7 +24,7 @@ function Sidebar() {
   return (
     <div className="shadow-md w-64 min-h-screen p-4 fixed">
       <h2 className="text-xl font-bold mb-4">F.O.R.X. Admin</h2>
-      <nav>
+      <nav style={{fontSize: '14px'}}>
         <NavLink 
           to="/dashboard"
           onClick={hideEmployeeLinks}

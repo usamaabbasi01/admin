@@ -257,7 +257,7 @@ const EmployeeDetails = () => {
                 type="text"
                 value={formData.station}
                 onChange={(e) => setFormData({ ...formData, station: e.target.value })}
-                className="border p-2 rounded w-full"
+                className="border p-2 rounded w-100"
                 placeholder='Station'
                 required
               />
