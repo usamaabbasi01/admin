@@ -197,7 +197,13 @@ const EmployeeDetails = () => {
 
   // Function to export data to Excel
   const exportToExcel = () => {
-    const ws = XLSX.utils.json_to_sheet(employees); // Convert employee data to a worksheet
+    // Create a new array of employees where 'Team' is converted to a string
+    const formattedEmployees = employees.map(employee => ({
+      ...employee,
+      Team: employee.Team ? employee.Team.join(', ') : 'No Team Assigned', // Convert team array to string
+    }));
+
+    const ws = XLSX.utils.json_to_sheet(formattedEmployees); // Convert employee data to a worksheet
     const wb = XLSX.utils.book_new(); // Create a new workbook
     XLSX.utils.book_append_sheet(wb, ws, 'Employees'); // Append the worksheet to the workbook
     XLSX.writeFile(wb, 'EmployeeDetails.xlsx'); // Download the Excel file
